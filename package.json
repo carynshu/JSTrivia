@@ -1,0 +1,32 @@
+{
+  "name": "javascript-trivia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack -d --watch",
+    "start": "node server/index.js"
+  },
+  "author": "Caryn Shu",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "babel-core": "^6.26.3",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "express": "^4.17.1",
+    "jquery": "^3.5.0",
+    "mongodb": "^3.5.6",
+    "mongoose": "^5.9.9",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "webpack": "^4.42.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-react": "^7.9.4",
+    "babel-loader": "^8.1.0",
+    "webpack-cli": "^3.3.11"
+  }
+}
