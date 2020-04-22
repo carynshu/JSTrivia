@@ -40,8 +40,8 @@ class Create extends React.Component {
     return (
       <div>
         <form>
-          <textarea type="text" value={this.state.question} onChange={this.onChangeQuestion} placeholder="Post a Question"></textarea>
-          <textarea type="text" value={this.state.answer} onChange={this.onChangeAnswer} placeholder="Answer to the Question"></textarea>
+          <textarea className="create-body-textarea" type="text" value={this.state.question} onChange={this.onChangeQuestion} placeholder="Post a Question"></textarea>
+          <textarea className="create-body-textarea" type="text" value={this.state.answer} onChange={this.onChangeAnswer} placeholder="Answer to the Question"></textarea>
         </form>
         <button type="submit" onClick={this.saveNewTrivia}>Save Question And Answer</button>
         <button type="submit" onClick={() => this.props.handleClick('question')}>Cancel</button>

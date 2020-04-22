@@ -5,12 +5,16 @@ import axios from 'axios';
 import Question from './components/Question.jsx';
 import Answer from './components/Answer.jsx';
 import Create from './components/Create.jsx';
+import Login from './components/Login.jsx';
+import CreateAccount from './components/CreateAccount.jsx';
+
+
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'question',
+      view: 'login',
       question: '',
       answer: ''
     }
@@ -26,12 +30,16 @@ class App extends React.Component {
           answer: answer
         })
       })
+    // this.renderView();
   }
 
   changeView(view) {
     this.setState({
       view: view
     })
+    if (view === 'question') {
+      this.getNextQuestion();
+    }
   }
 
   add(question, answer) {
@@ -47,6 +55,34 @@ class App extends React.Component {
       })
   }
 
+  addUser(username, password) {
+    axios.post(`http://localhost:3000/user`, {
+      username: username,
+      password: password
+    })
+      .then(res => {
+        alert('successfully created new user!');
+        this.setState({
+          view: 'login'
+        })
+      })
+      .catch(err => {
+        alert('please choose a different username');
+      })
+  }
+
+  getNextQuestion() {
+    axios.get(`http://localhost:3000/trivia`)
+      .then(res => {
+        const question = res.data.question;
+        const answer = res.data.answer;
+        this.setState({
+          question: question,
+          answer: answer
+        })
+      })
+  }
+
 
 
   renderView() {
@@ -56,6 +92,10 @@ class App extends React.Component {
       return <Answer answer={this.state.answer} handleClick={(view) => this.changeView(view)}/>
     } else if (this.state.view === 'create') {
       return <Create onAdd={this.add.bind(this)} handleClick={(view) => this.changeView(view)}/>
+    } else if (this.state.view === 'login') {
+      return <Login handleClick={(view) => this.changeView(view)}/>
+    } else if (this.state.view === 'createAccount') {
+      return <CreateAccount onAddUser={this.addUser.bind(this)} handleClick={(view) => this.changeView(view)}/>
     }
   }
 
@@ -63,7 +103,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>Javascript Trivia</h1>
-        <div className="container">
+        <div className="post">
           <div className="card">
             <div className="main">
               {this.renderView()}

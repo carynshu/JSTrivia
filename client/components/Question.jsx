@@ -8,8 +8,11 @@ class Question extends React.Component {
   render() {
     return (
       <div>
+
         <button onClick={() => this.props.handleClick('create')}>Add Question</button>
+
         <p>{this.props.question}</p>
+
         <button onClick={() => this.props.handleClick('answer')}>See Answer</button>
       </div>
     )
