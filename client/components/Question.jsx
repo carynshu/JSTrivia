@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
 
 class Question extends React.Component {
   constructor(props) {
@@ -9,11 +10,11 @@ class Question extends React.Component {
     return (
       <div>
 
-        <button onClick={() => this.props.handleClick('create')}>Add Question</button>
+        <Button variant="outline-primary" onClick={() => this.props.handleClick('create')}>Add Question</Button>
 
         <p>{this.props.question}</p>
 
-        <button onClick={() => this.props.handleClick('answer')}>See Answer</button>
+        <Button variant="outline-primary" onClick={() => this.props.handleClick('answer')}>See Answer</Button>
       </div>
     )
   }

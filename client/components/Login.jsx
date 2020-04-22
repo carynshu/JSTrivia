@@ -1,4 +1,7 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
 
 class Login extends React.Component {
   constructor(props) {
@@ -26,7 +29,7 @@ class Login extends React.Component {
     return (
       <div>
         <h3>Please Login</h3>
-        <form>
+        {/* <form>
           <label>
             username:
             <input type='text' value={this.state.username} onChange={this.onChangeUsername} />
@@ -35,9 +38,19 @@ class Login extends React.Component {
             password:
             <input type='text' value={this.state.password} onChange={this.onChangePassword} />
           </label>
-        </form>
-        <p>Don't Have an Account?</p><button type="submit" onClick={() => this.props.handleClick('createAccount')}>Create Account</button>
-        <button onClick={() => this.props.handleClick('question')}>Use it as Guest</button>
+        </form> */}
+        <Form>
+          <Form.Row>
+            <Col>
+              <Form.Control placeholder="Username" value={this.state.username} onChange={this.onChangeUsername}/>
+            </Col>
+            <Col>
+              <Form.Control placeholder="Password" value={this.state.password} onChange={this.onChangePassword}/>
+            </Col>
+          </Form.Row>
+        </Form>
+        <p>Don't Have an Account?</p><Button variant="outline-success" onClick={() => this.props.handleClick('createAccount')}>Create Account</Button>
+        <Button variant="outline-primary" onClick={() => this.props.handleClick('question')}>Use it as A Guest</Button>
       </div>
     )
   }

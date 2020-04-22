@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
 
 class Create extends React.Component {
   constructor(props) {
@@ -43,8 +44,8 @@ class Create extends React.Component {
           <textarea className="create-body-textarea" type="text" value={this.state.question} onChange={this.onChangeQuestion} placeholder="Post a Question"></textarea>
           <textarea className="create-body-textarea" type="text" value={this.state.answer} onChange={this.onChangeAnswer} placeholder="Answer to the Question"></textarea>
         </form>
-        <button type="submit" onClick={this.saveNewTrivia}>Save Question And Answer</button>
-        <button type="submit" onClick={() => this.props.handleClick('question')}>Cancel</button>
+        <Button variant="outline-success" onClick={this.saveNewTrivia}>Save Question And Answer</Button>
+        <Button variant="outline-danger" onClick={() => this.props.handleClick('question')}>Cancel</Button>
       </div>
     )
   }

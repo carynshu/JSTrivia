@@ -1,4 +1,7 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
 
 class CreateAccount extends React.Component {
   constructor(props) {
@@ -35,7 +38,7 @@ class CreateAccount extends React.Component {
     return (
       <div>
         <h3>Create An Account</h3>
-        <form>
+        {/* <form>
           <label>
             username:
             <input type='text' value={this.state.username} onChange={this.onChangeUsername} />
@@ -44,9 +47,19 @@ class CreateAccount extends React.Component {
             password:
             <input type='text' value={this.state.password} onChange={this.onChangePassword} />
           </label>
-        </form>
-        <button type="submit" onClick={this.saveNewUser}>Create</button>
-        <button onClick={() => this.props.handleClick('login')}>Cancel</button>
+        </form> */}
+        <Form>
+          <Form.Row>
+            <Col>
+              <Form.Control placeholder="Username" value={this.state.username} onChange={this.onChangeUsername}/>
+            </Col>
+            <Col>
+              <Form.Control placeholder="Password" value={this.state.password} onChange={this.onChangePassword}/>
+            </Col>
+          </Form.Row>
+        </Form>
+        <Button variant="outline-success" onClick={this.saveNewUser}>Create</Button>
+        <Button variant="outline-danger" onClick={() => this.props.handleClick('login')}>Cancel</Button>
       </div>
 
     )
