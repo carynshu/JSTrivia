@@ -96,6 +96,8 @@ class App extends React.Component {
       return <Login handleClick={(view) => this.changeView(view)}/>
     } else if (this.state.view === 'createAccount') {
       return <CreateAccount onAddUser={this.addUser.bind(this)} handleClick={(view) => this.changeView(view)}/>
+    } else if (this.state.view === 'userQuestion') {
+      return <UserQuestion handleClick={(view) => this.changeView(view)}/>
     }
   }
 
@@ -105,9 +107,9 @@ class App extends React.Component {
         <h1>Javascript Trivia</h1>
         <div className="post">
           <div className="card">
-            <div className="main">
+            <section className="main">
               {this.renderView()}
-            </div>
+            </section>
           </div>
         </div>
       </div>

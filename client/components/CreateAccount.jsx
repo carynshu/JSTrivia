@@ -37,31 +37,16 @@ class CreateAccount extends React.Component {
   render() {
     return (
       <div>
-        <h3>Create An Account</h3>
-        {/* <form>
-          <label>
-            username:
-            <input type='text' value={this.state.username} onChange={this.onChangeUsername} />
-          </label>
-          <label>
-            password:
-            <input type='text' value={this.state.password} onChange={this.onChangePassword} />
-          </label>
-        </form> */}
+        <p>Create An Account</p>
         <Form>
-          <Form.Row>
-            <Col>
-              <Form.Control placeholder="Username" value={this.state.username} onChange={this.onChangeUsername}/>
-            </Col>
-            <Col>
-              <Form.Control placeholder="Password" value={this.state.password} onChange={this.onChangePassword}/>
-            </Col>
+          <Form.Row className="wrapper">
+              <Form.Control className="loginInfo" placeholder="Username" value={this.state.username} onChange={this.onChangeUsername}/>
+              <Form.Control className="loginInfo" placeholder="Password" value={this.state.password} onChange={this.onChangePassword}/>
+              <Button className="button" variant="outline-success" onClick={this.saveNewUser}>Create</Button>
+              <Button className="button" variant="outline-danger" onClick={() => this.props.handleClick('login')}>Cancel</Button>
           </Form.Row>
         </Form>
-        <Button variant="outline-success" onClick={this.saveNewUser}>Create</Button>
-        <Button variant="outline-danger" onClick={() => this.props.handleClick('login')}>Cancel</Button>
       </div>
-
     )
   }
 }

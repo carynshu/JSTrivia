@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Col from 'react-bootstrap/Col';
+// import Col from 'react-bootstrap/Col';
 
 class Login extends React.Component {
   constructor(props) {
@@ -28,29 +28,20 @@ class Login extends React.Component {
   render() {
     return (
       <div>
-        <h3>Please Login</h3>
-        {/* <form>
-          <label>
-            username:
-            <input type='text' value={this.state.username} onChange={this.onChangeUsername} />
-          </label>
-          <label>
-            password:
-            <input type='text' value={this.state.password} onChange={this.onChangePassword} />
-          </label>
-        </form> */}
+        <header>Please Login</header>
         <Form>
-          <Form.Row>
-            <Col>
-              <Form.Control placeholder="Username" value={this.state.username} onChange={this.onChangeUsername}/>
-            </Col>
-            <Col>
-              <Form.Control placeholder="Password" value={this.state.password} onChange={this.onChangePassword}/>
-            </Col>
+          <div className="wrapper">
+          <Form.Row >
+              <Form.Control className="loginInfo" placeholder="Username" value={this.state.username} onChange={this.onChangeUsername}/>
+              <Form.Control className="loginInfo" placeholder="Password" value={this.state.password} onChange={this.onChangePassword}/>
+              <Button className="loginInfoButton" variant="outline-success" onClick={() => this.props.handleClick('userQuestions')}>Login</Button>
           </Form.Row>
+          </div>
         </Form>
-        <p>Don't Have an Account?</p><Button variant="outline-success" onClick={() => this.props.handleClick('createAccount')}>Create Account</Button>
-        <Button variant="outline-primary" onClick={() => this.props.handleClick('question')}>Use it as A Guest</Button>
+
+        <p>Don't Have an Account?</p>
+        <Button variant="outline-success" className="button" onClick={() => this.props.handleClick('createAccount')}>Create Account</Button>
+        <Button variant="outline-primary" className="button" onClick={() => this.props.handleClick('question')}>Use it as A Guest</Button>
       </div>
     )
   }
