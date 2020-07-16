@@ -25,6 +25,12 @@ class Login extends React.Component {
       password: e.target.value
     })
   }
+
+  checkUserInfo() {
+    let username = this.state.username;
+    let password = this.state.password;
+
+  }
   render() {
     return (
       <div>
@@ -34,7 +40,7 @@ class Login extends React.Component {
           <Form.Row >
               <Form.Control className="loginInfo" placeholder="Username" value={this.state.username} onChange={this.onChangeUsername}/>
               <Form.Control className="loginInfo" placeholder="Password" value={this.state.password} onChange={this.onChangePassword}/>
-              <Button className="loginInfoButton" variant="outline-success" onClick={() => this.props.handleClick('userQuestions')}>Login</Button>
+              <Button className="loginInfoButton" variant="outline-success" onClick={this.checkUserInfo}>Login</Button>
           </Form.Row>
           </div>
         </Form>

@@ -23,7 +23,7 @@ let saveNewUser = (username, password, cb) => {
   var newUser = {
     username: username,
     hashedPassword: password,
-    trivia: []
+    questions: []
   };
   User.create(newUser, cb);
 }
