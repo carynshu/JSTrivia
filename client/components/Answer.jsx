@@ -10,7 +10,8 @@ class Answer extends React.Component {
     return (
       <div>
         <p>{this.props.answer}</p>
-        <Button variant="outline-primary" onClick={() => this.props.handleClick('question')}>Next Question</Button>
+        <Button className="button" variant="outline-primary" onClick={() => this.props.handleClick('question')}>Next Question</Button>
+        <Button className="button" variant="outline-danger" onClick={() => this.props.handleClick('login')}>Logout</Button>
       </div>
     )
   }

@@ -15,6 +15,7 @@ class Question extends React.Component {
         <p>{this.props.question}</p>
 
         <Button className="button" variant="outline-primary" onClick={() => this.props.handleClick('answer')}>See Answer</Button>
+        <Button className="button" variant="outline-danger" onClick={() => this.props.handleClick('login')}>Logout</Button>
       </div>
     )
   }

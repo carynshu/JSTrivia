@@ -35,11 +35,20 @@ class App extends React.Component {
   }
 
   changeView(view) {
-    this.setState({
-      view: view
-    })
     if (view === 'question') {
       this.getNextQuestion();
+    } else if (view === 'login' && this.state.login) {
+      this.setState({
+        view: 'login',
+        question: '',
+        answer: '',
+        login: false,
+        username: ''
+      })
+    } else {
+      this.setState({
+        view: view
+      })
     }
   }
 
