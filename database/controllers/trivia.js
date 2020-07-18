@@ -16,7 +16,6 @@ let saveNewTrivia = (question, answer, cb) => {
     answer: answer
   };
   Trivia.create(newTrivia, cb);
-  // newTrivia.save(cb);
 }
 
 let saveNewUser = (username, password, cb) => {
@@ -32,8 +31,30 @@ let getHashedPassword = (username, cb) => {
   User.findOne({username : username}).exec(cb)
 }
 
-// let getUser = ()
+let saveUserTrivia = (question, answer, username, cb) => {
+  var newTrivia = {
+    question: question,
+    answer: answer
+  };
+  User.findOneAndUpdate({username:username}, {$push: {questions: newTrivia}}).exec(cb);
+}
+
+let getUserTrivia = (username, cb) => {
+  let query = User.findOne({"username": username})
+  query.select('questions').count().exec((err, count) => {
+    let random = Math.floor(Math.random() * count);
+    if (random < 2) {
+      query.select('questions').findOne().exec(cb);
+    } else {
+      queryy.select('questions').findOne().skip(random).exec(cb);
+    }
+  })
+}
+
+
 module.exports.getTrivia = getTrivia;
 module.exports.saveNewTrivia = saveNewTrivia;
 module.exports.saveNewUser = saveNewUser;
 module.exports.getHashedPassword = getHashedPassword;
+module.exports.saveUserTrivia = saveUserTrivia;
+module.exports.getUserTrivia = getUserTrivia;

@@ -2,9 +2,7 @@ const express = require('express');
 let app = express();
 const bcrypt = require('bcrypt');
 const db = require('../database/index.js');
-// const Trivia = require('../database/models/Trivia.js');
-const User = require('../database/models/User.js');
-const {getTrivia, saveNewTrivia, saveNewUser, getHashedPassword} = require('../database/controllers/trivia.js')
+const {getTrivia, saveNewTrivia, saveNewUser, getHashedPassword, saveUserTrivia, getUserTrivia} = require('../database/controllers/trivia.js')
 
 app.use(express.json());
 app.use(express.static(__dirname + '/../client/dist'));
@@ -17,10 +15,6 @@ app.get('/trivia', (req, res) => {
       res.json(question);
     }
   });
-
-  // db.Trivia.find({})
-  //   .then((dbTrivia) => res.json(dbTrivia))
-  //   .catch((err) => res.json(err));
 });
 
 app.post('/trivia', (req, res) => {
@@ -65,18 +59,43 @@ app.post('/user/login', (req, res) => {
       if (hashedPassword == null) {
         return res.status(400).send('Cannot find the username')
       }
-      if (bcrypt.compare(req.body.password, hashedPassword)) {
-        res.send('success');
-        db.User.find({})
-        .then((trivia) => res.json(trivia))
-      } else {
-        res.send('not allowed')
-      }
+      bcrypt.compare(req.body.password, hashedPassword, function (err, result) {
+        if (err) {
+          res.send('something went wrong')
+        } else if (result === true) {
+          res.send('success')
+        } else if (result === false) {
+          res.status(401).send('not allowed')
+        }
+      })
     }
   });
+});
 
-
+app.post('/user/trivia', (req, res) => {
+  var question = req.body.question;
+  var answer = req.body.answer;
+  var username = req.body.username;
+  saveUserTrivia(question, answer, username, (err, result) => {
+    if (err) {
+      console.error(err)
+    } else {
+      res.status(200).send('successfully saved the question and answer!')
+    }
+  })
 })
+
+app.get('/user/trivia', (req, res) => {
+  var username = req.query.username;
+
+  getUserTrivia(username, (err, question) => {
+    if (err) {
+      res.status(404).send('fail to get question!')
+    } else {
+      res.json(question);
+    }
+  });
+});
 
 let port = 3000;
 app.listen(port, () => console.log(`listening on port ${port}`));

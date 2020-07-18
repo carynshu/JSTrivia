@@ -12,6 +12,7 @@ class Login extends React.Component {
     }
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
+    this.checkUserInfo = this.checkUserInfo.bind(this);
   }
 
   onChangeUsername(e) {
@@ -29,7 +30,7 @@ class Login extends React.Component {
   checkUserInfo() {
     let username = this.state.username;
     let password = this.state.password;
-
+    this.props.checkUserInfo(username, password);
   }
   render() {
     return (

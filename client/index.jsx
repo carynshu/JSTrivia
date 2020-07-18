@@ -16,7 +16,9 @@ class App extends React.Component {
     this.state = {
       view: 'login',
       question: '',
-      answer: ''
+      answer: '',
+      login: false,
+      username: ''
     }
   }
 
@@ -30,7 +32,6 @@ class App extends React.Component {
           answer: answer
         })
       })
-    // this.renderView();
   }
 
   changeView(view) {
@@ -43,7 +44,8 @@ class App extends React.Component {
   }
 
   add(question, answer) {
-    axios.post(`http://localhost:3000/trivia`, {
+    if (!this.state.login) {
+      axios.post(`http://localhost:3000/trivia`, {
       question: question,
       answer: answer
     })
@@ -53,6 +55,19 @@ class App extends React.Component {
       .catch(err => {
         console.log(err);
       })
+    } else {
+      axios.post(`http://localhost:3000/user/trivia`, {
+        question: question,
+        answer: answer,
+        username: this.state.username
+      })
+      .then(res => {
+        alert('successfully saved new trivia!')
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    }
   }
 
   addUser(username, password) {
@@ -72,14 +87,55 @@ class App extends React.Component {
   }
 
   getNextQuestion() {
-    axios.get(`http://localhost:3000/trivia`)
+    if (!this.state.login) {
+      axios.get(`http://localhost:3000/trivia`)
       .then(res => {
         const question = res.data.question;
         const answer = res.data.answer;
         this.setState({
+          view: 'question',
           question: question,
           answer: answer
         })
+      })
+    } else {
+      axios.get(`http://localhost:3000/user/trivia`, {
+        params: {
+          username: this.state.username
+        }
+      })
+      .then(res => {
+        if (res.data.questions.length === 0) {
+          this.setState({
+            view: 'create'
+          })
+        } else {
+          const question = res.data.questions[0].question;
+          const answer = res.data.questions[0].answer;
+          this.setState({
+            view: 'question',
+            question: question,
+            answer: answer
+          })
+        }
+      })
+    }
+  }
+
+  checkUserInfo(username, password) {
+    axios.post(`http://localhost:3000/user/login`, {
+      username: username,
+      password: password
+    })
+      .then(res => {
+        this.setState({
+          login: true,
+          username: username
+        });
+        this.getNextQuestion();
+      })
+      .catch(err => {
+        alert('login info was incorrect!')
       })
   }
 
@@ -93,7 +149,7 @@ class App extends React.Component {
     } else if (this.state.view === 'create') {
       return <Create onAdd={this.add.bind(this)} handleClick={(view) => this.changeView(view)}/>
     } else if (this.state.view === 'login') {
-      return <Login handleClick={(view) => this.changeView(view)}/>
+      return <Login checkUserInfo={this.checkUserInfo.bind(this)} handleClick={(view) => this.changeView(view)}/>
     } else if (this.state.view === 'createAccount') {
       return <CreateAccount onAddUser={this.addUser.bind(this)} handleClick={(view) => this.changeView(view)}/>
     } else if (this.state.view === 'userQuestion') {
