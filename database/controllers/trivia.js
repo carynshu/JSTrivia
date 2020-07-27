@@ -51,10 +51,13 @@ let getUserTrivia = (username, cb) => {
   })
 }
 
+let func = {
+  getTrivia : getTrivia,
+  saveNewTrivia : saveNewTrivia,
+  saveNewUser : saveNewUser,
+  getHashedPassword : getHashedPassword,
+  saveUserTrivia : saveUserTrivia,
+  getUserTrivia : getUserTrivia
+};
 
-module.exports.getTrivia = getTrivia;
-module.exports.saveNewTrivia = saveNewTrivia;
-module.exports.saveNewUser = saveNewUser;
-module.exports.getHashedPassword = getHashedPassword;
-module.exports.saveUserTrivia = saveUserTrivia;
-module.exports.getUserTrivia = getUserTrivia;
+module.exports = func;
