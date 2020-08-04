@@ -39,7 +39,7 @@ class Create extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="block">
         <form>
           <textarea className="create-body-textarea" type="text" value={this.state.question} onChange={this.onChangeQuestion} placeholder="Post a Question"></textarea>
           <textarea className="create-body-textarea" type="text" value={this.state.answer} onChange={this.onChangeAnswer} placeholder="Answer to the Question"></textarea>

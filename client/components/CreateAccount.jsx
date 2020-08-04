@@ -36,15 +36,17 @@ class CreateAccount extends React.Component {
 
   render() {
     return (
-      <div>
-        <p>Create An Account</p>
+      <div className="block">
+        <header>Create An Account</header>
         <Form>
-          <Form.Row className="wrapper">
+          <div className="wrapper">
+          <Form.Row>
               <Form.Control className="loginInfo" placeholder="Username" value={this.state.username} onChange={this.onChangeUsername}/>
-              <Form.Control className="loginInfo" placeholder="Password" value={this.state.password} onChange={this.onChangePassword}/>
-              <Button className="button" variant="outline-success" onClick={this.saveNewUser}>Create</Button>
-              <Button className="button" variant="outline-danger" onClick={() => this.props.handleClick('login')}>Cancel</Button>
+              <Form.Control className="loginInfo password" placeholder="Password" value={this.state.password} onChange={this.onChangePassword}/>
+              <Button className="buttonCreateAccount" variant="outline-success" onClick={this.saveNewUser}>Create</Button>
+              <Button className="buttonCreateAccount" variant="outline-danger" onClick={() => this.props.handleClick('login')}>Cancel</Button>
           </Form.Row>
+          </div>
         </Form>
       </div>
     )

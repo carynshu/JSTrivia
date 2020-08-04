@@ -8,11 +8,11 @@ class Question extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="block">
 
         <Button className="button" variant="outline-primary" onClick={() => this.props.handleClick('create')}>Add Question</Button>
 
-        <p>{this.props.question}</p>
+        <p className="block">{this.props.question}</p>
 
         <Button className="button" variant="outline-primary" onClick={() => this.props.handleClick('answer')}>See Answer</Button>
         <Button className="button" variant="outline-danger" onClick={() => this.props.handleClick('login')}>Logout</Button>
