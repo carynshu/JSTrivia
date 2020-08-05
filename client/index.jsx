@@ -114,13 +114,13 @@ class App extends React.Component {
         }
       })
       .then(res => {
-        if (res.data.questions.length === 0) {
+        if (res.data === "") {
           this.setState({
             view: 'create'
           })
         } else {
-          const question = res.data.questions[0].question;
-          const answer = res.data.questions[0].answer;
+          const question = res.data.question;
+          const answer = res.data.answer;
           this.setState({
             view: 'question',
             question: question,
@@ -161,15 +161,13 @@ class App extends React.Component {
       return <Login checkUserInfo={this.checkUserInfo.bind(this)} handleClick={(view) => this.changeView(view)}/>
     } else if (this.state.view === 'createAccount') {
       return <CreateAccount onAddUser={this.addUser.bind(this)} handleClick={(view) => this.changeView(view)}/>
-    } else if (this.state.view === 'userQuestion') {
-      return <UserQuestion handleClick={(view) => this.changeView(view)}/>
     }
   }
 
   render() {
     return (
       <div>
-        <h1>Javascript Trivia</h1>
+        <h1 id="title">JS Trivia</h1>
         <div className="post">
           <div className="card">
             <section className="main">

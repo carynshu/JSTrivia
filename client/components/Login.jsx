@@ -45,10 +45,9 @@ class Login extends React.Component {
           </Form.Row>
           </div>
         </Form>
-
-        <p>Don't Have an Account?</p>
-        <Button variant="outline-success" className="button" onClick={() => this.props.handleClick('createAccount')}>Create Account</Button>
-        <Button variant="outline-primary" className="button" onClick={() => this.props.handleClick('question')}>Use it as A Guest</Button>
+          <div>Don't Have an Account?</div>
+          <Button variant="outline-success" className="button" onClick={() => this.props.handleClick('createAccount')}>Create Account</Button>
+          <Button variant="outline-primary" className="button" onClick={() => this.props.handleClick('question')}>Use it as A Guest</Button>
       </div>
     )
   }

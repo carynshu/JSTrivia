@@ -10,6 +10,7 @@
   "author": "Caryn Shu",
   "license": "ISC",
   "dependencies": {
+    "animate.css": "^4.1.0",
     "axios": "^0.19.2",
     "bcrypt": "^4.0.1",
     "bootstrap": "^4.4.1",

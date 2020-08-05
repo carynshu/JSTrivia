@@ -40,15 +40,7 @@ let saveUserTrivia = (question, answer, username, cb) => {
 }
 
 let getUserTrivia = (username, cb) => {
-  let query = User.findOne({"username": username})
-  query.select('questions').count().exec((err, count) => {
-    let random = Math.floor(Math.random() * count);
-    if (random < 2) {
-      query.select('questions').findOne().exec(cb);
-    } else {
-      queryy.select('questions').findOne().skip(random).exec(cb);
-    }
-  })
+  User.find({username: username}, 'questions').exec(cb);
 }
 
 let func = {

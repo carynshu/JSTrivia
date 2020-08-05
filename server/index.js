@@ -88,11 +88,13 @@ app.post('/user/trivia', (req, res) => {
 app.get('/user/trivia', (req, res) => {
   var username = req.query.username;
 
-  getUserTrivia(username, (err, question) => {
+  getUserTrivia(username, (err, list) => {
     if (err) {
       res.status(404).send('fail to get question!')
     } else {
-      res.json(question);
+      let count = list[0].questions.length;
+      let random = Math.floor(Math.random() * count);
+      res.json(list[0].questions[random]);
     }
   });
 });
