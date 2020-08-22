@@ -38,7 +38,7 @@ app.post('/user', async (req, res) => {
 
     saveNewUser(username, hashedPassword, (err, result) => {
       if (err) {
-        res.send('please use a different username')
+        res.status(409).send('please use a different username')
       } else {
         res.send('successfully saved the new user')
       }

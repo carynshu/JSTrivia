@@ -24,7 +24,13 @@ let saveNewUser = (username, password, cb) => {
     hashedPassword: password,
     questions: []
   };
-  User.create(newUser, cb);
+  let duplicate = !!User.findOne({username});
+  console.log(duplicate)
+  if (!duplicate) {
+    User.create(newUser, cb);
+  } else {
+    cb('username already in database', null);
+  }
 }
 
 let getHashedPassword = (username, cb) => {

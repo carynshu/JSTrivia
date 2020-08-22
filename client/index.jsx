@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
+import { createStore } from 'redux';
 import axios from 'axios';
 
 import Question from './components/Question.jsx';
@@ -9,6 +10,7 @@ import Login from './components/Login.jsx';
 import CreateAccount from './components/CreateAccount.jsx';
 
 import 'bootstrap/dist/css/bootstrap.css';
+import Alert from 'react-bootstrap/Alert';
 
 class App extends React.Component {
   constructor(props) {
@@ -21,6 +23,7 @@ class App extends React.Component {
       username: ''
     }
   }
+
 
   componentDidMount() {
     axios.get(`http://localhost:3000/trivia`)
@@ -71,7 +74,7 @@ class App extends React.Component {
         username: this.state.username
       })
       .then(res => {
-        alert('successfully saved new trivia!')
+        return <Alert variant='success'>successfully saved new trivia!</Alert>
       })
       .catch(err => {
         console.log(err);
@@ -144,7 +147,9 @@ class App extends React.Component {
         this.getNextQuestion();
       })
       .catch(err => {
-        alert('login info was incorrect!')
+        const [show, setShow] = useState(true);
+        return <Alert show={true} onClose={() => setShow(false)} variant='danger' closeLabel='Close Alert' dismissible
+        fade="false">login info was incorrect!</Alert>
       })
   }
 
